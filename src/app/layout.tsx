@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from 'next/link';
-
+import PageAnimatePresence from '@/app/components/PageAnimatePresence';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -24,7 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${inter.className} p-8`}>
+      <body
+        className={`${inter.className} p-8 transition-colors duration-1000`}
+        id='page-container'
+      >
         <ul className='flex gap-x-4 py-8 px-0'>
           {routes.map((route) => (
             <li key={route.path}>
@@ -32,7 +35,7 @@ export default function RootLayout({
             </li>
           ))}
         </ul>
-        {children}
+        <PageAnimatePresence>{children}</PageAnimatePresence>
       </body>
     </html>
   );
